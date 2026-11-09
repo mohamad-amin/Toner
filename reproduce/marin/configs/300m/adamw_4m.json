@@ -1,0 +1,66 @@
+{
+  "engine": "pytorch",
+  "model": {
+    "size": "300m",
+    "hidden": 768,
+    "mlp": 3072,
+    "heads": 12,
+    "layers": 32,
+    "sequence_length": 4096,
+    "vocab_size": 128256,
+    "rope_theta": 10000.0,
+    "norm_eps": 1e-05,
+    "residual_dtype": "bf16",
+    "embedding_init_scale": "sqrt_hidden"
+  },
+  "training": {
+    "global_batch_sequences": 1024,
+    "micro_batch_size": 8,
+    "steps": 1440,
+    "world_size": 8,
+    "heldout_windows": 64,
+    "batch_tokens": 4194304,
+    "tokens": 6039797760,
+    "chinchilla_multiplier": 1
+  },
+  "optimizer": {
+    "name": "adamw",
+    "lr": 0.008,
+    "auxiliary_lr": 0.008,
+    "weight_decay": 0.282843,
+    "head_weight_decay": 0.282843,
+    "betas": [
+      0.9,
+      0.85076302
+    ],
+    "eps": 1e-10,
+    "clip_norm": 2.0
+  },
+  "schedule": {
+    "warmup_steps": 707,
+    "stable_steps": 0,
+    "decay_steps": 733,
+    "kind": "cosine",
+    "min_lr_ratio": 0.0
+  },
+  "data": {
+    "manifest": "data_plan.json",
+    "tokenizer": "meta-llama/Meta-Llama-3.1-8B",
+    "mixture_weights": {
+      "dclm": 3.8,
+      "starcoder": 0.25,
+      "proofpile": 0.055
+    },
+    "bos_token_id": 128000,
+    "eos_token_id": 128001
+  },
+  "runtime": {
+    "compile": "max-autotune-no-cudagraphs",
+    "attention": "FA3",
+    "head": "compiled",
+    "capture": "recompute",
+    "eval_every": 250,
+    "eval_max_windows": 0
+  },
+  "reference_validation_loss": 3.442061
+}

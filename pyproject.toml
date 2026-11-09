@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "toner-optim"
+version = "0.3.0"
+description = "Input-statistic preconditioning for Muon and AdamW"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+dependencies = ["torch>=2.9"]
+authors = [
+  {name = "Mohamad Amin Mohamadi"},
+  {name = "Kaiyue Wen"},
+  {name = "Tianhao Wang"},
+  {name = "Zhiyuan Li"},
+]
+
+[project.optional-dependencies]
+examples = ["numpy>=1.24"]
+fast = ["triton>=3.5; platform_system == 'Linux'"]
+marin-data = ["numpy>=1.24", "transformers>=4.44", "huggingface-hub>=0.24", "requests>=2.31", "zstandard>=0.22", "pyarrow>=17"]
+
+[project.urls]
+Repository = "https://github.com/mohamad-amin/Toner"
+Blog = "https://muon-sfd-half-eighth-amin-1105.leamin.chatgpt.site/"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

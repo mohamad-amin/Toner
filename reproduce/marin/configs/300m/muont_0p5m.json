@@ -1,0 +1,98 @@
+{
+  "engine": "pytorch",
+  "model": {
+    "size": "300m",
+    "hidden": 768,
+    "mlp": 3072,
+    "heads": 12,
+    "layers": 32,
+    "sequence_length": 4096,
+    "vocab_size": 128256,
+    "rope_theta": 10000.0,
+    "norm_eps": 1e-05,
+    "residual_dtype": "bf16",
+    "embedding_init_scale": "sqrt_hidden"
+  },
+  "training": {
+    "global_batch_sequences": 128,
+    "micro_batch_size": 8,
+    "steps": 11520,
+    "world_size": 8,
+    "heldout_windows": 64,
+    "batch_tokens": 524288,
+    "tokens": 6039797760,
+    "chinchilla_multiplier": 1
+  },
+  "optimizer": {
+    "name": "muont",
+    "lr": 0.01131370848,
+    "auxiliary_lr": 0.0032,
+    "weight_decay": 0.1,
+    "head_weight_decay": 0.1,
+    "betas": [
+      0.8,
+      0.98
+    ],
+    "eps": 1e-15,
+    "clip_norm": 1.0,
+    "momentum": 0.98,
+    "nesterov": true,
+    "ns_steps": 10,
+    "ns_eps": 1e-05,
+    "ns_mode": "tpu"
+  },
+  "schedule": {
+    "warmup_steps": 0,
+    "stable_steps": 2304,
+    "decay_steps": 9216,
+    "kind": "linear",
+    "min_lr_ratio": 0.0
+  },
+  "data": {
+    "manifest": "data_plan.json",
+    "tokenizer": "meta-llama/Meta-Llama-3.1-8B",
+    "mixture_weights": {
+      "dclm": 3.8,
+      "starcoder": 0.25,
+      "proofpile": 0.055
+    },
+    "bos_token_id": 128000,
+    "eos_token_id": 128001
+  },
+  "runtime": {
+    "compile": "max-autotune-no-cudagraphs",
+    "attention": "FA3",
+    "head": "compiled",
+    "capture": "recompute",
+    "eval_every": 1000,
+    "eval_max_windows": 0
+  },
+  "reference_validation_loss": 3.2178180711079567,
+  "statistics": {
+    "momentum": 0.938,
+    "head": 32,
+    "stride": 16,
+    "damping": 0.001,
+    "inner_strength": 0.5,
+    "outer_strength": 0.125
+  },
+  "root": {
+    "mode": "fast",
+    "iterations": 2,
+    "refresh": 4,
+    "inline_steps": 20,
+    "tolerance_kind": "floor",
+    "tolerance_fraction": 0.06666666666666667,
+    "min_tolerance": 5e-06,
+    "epsilon": 0.0001,
+    "rho_max": 0.2,
+    "repair_rounds": 3,
+    "graphs": true,
+    "host_workers": 2,
+    "host_threads": 4,
+    "refresh_flagged": true,
+    "chunk": 2,
+    "begin": "head",
+    "overlap": 1
+  }
+}

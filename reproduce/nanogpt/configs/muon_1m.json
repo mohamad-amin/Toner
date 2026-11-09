@@ -1,0 +1,124 @@
+{
+  "model": {
+    "vocab_size": 50304,
+    "num_layers": 12,
+    "model_dim": 768,
+    "head_dim": 128
+  },
+  "training": {
+    "steps": 1625,
+    "batch_tokens": 1048576,
+    "micro_batch_size": 64,
+    "world_size": 4,
+    "sequence_length": 1024,
+    "gradient_reduction": "sum",
+    "clip_grad_norm": null
+  },
+  "optimizer": {
+    "name": "muon",
+    "lr": 0.025,
+    "weight_decay": 0.1,
+    "momentum": 0.95,
+    "nesterov": true,
+    "ns_steps": 12,
+    "ns_coefficients": [
+      2.0,
+      -1.5,
+      0.5
+    ],
+    "ns_epsilon": 1e-07,
+    "ns_dtype": "bfloat16"
+  },
+  "auxiliary": {
+    "embedding_lr": 0.98995,
+    "head_lr": 0.0056569,
+    "scalar_lr": 0.0212132,
+    "betas": [
+      0.8,
+      0.93106
+    ],
+    "eps": 1e-10,
+    "weight_decay": 0.001
+  },
+  "schedule": {
+    "cooldown_fraction": 0.8
+  },
+  "statistics": {
+    "momentum": 0.95,
+    "head": 32,
+    "stride": 16,
+    "global": true
+  },
+  "root": {
+    "mode": "fast",
+    "inner_strength": 0.0,
+    "outer_strength": 0.0,
+    "decay_strength": 0.0,
+    "damping": 0.001,
+    "iterations": 4,
+    "refresh": 4,
+    "inline_steps": 20,
+    "tolerance": 0.001,
+    "rho_max": 0.2,
+    "sqrt_iterations": 2,
+    "max_stale_steps": 16,
+    "workers": 3,
+    "wide_workers": 2,
+    "graphs": true,
+    "eigh_threads": 0
+  },
+  "data": {
+    "repository": "kjj0/fineweb10B-gpt2",
+    "revision": "889765ea1f903759787add96995d81171b632d0c",
+    "files": [
+      "fineweb_val_000000.bin",
+      "fineweb_train_000001.bin",
+      "fineweb_train_000002.bin",
+      "fineweb_train_000003.bin",
+      "fineweb_train_000004.bin",
+      "fineweb_train_000005.bin",
+      "fineweb_train_000006.bin",
+      "fineweb_train_000007.bin",
+      "fineweb_train_000008.bin",
+      "fineweb_train_000009.bin",
+      "fineweb_train_000010.bin",
+      "fineweb_train_000011.bin",
+      "fineweb_train_000012.bin",
+      "fineweb_train_000013.bin",
+      "fineweb_train_000014.bin",
+      "fineweb_train_000015.bin",
+      "fineweb_train_000016.bin",
+      "fineweb_train_000017.bin",
+      "fineweb_train_000018.bin",
+      "fineweb_train_000019.bin",
+      "fineweb_train_000020.bin",
+      "fineweb_train_000021.bin",
+      "fineweb_train_000022.bin",
+      "fineweb_train_000023.bin",
+      "fineweb_train_000024.bin",
+      "fineweb_train_000025.bin",
+      "fineweb_train_000026.bin",
+      "fineweb_train_000027.bin",
+      "fineweb_train_000028.bin",
+      "fineweb_train_000029.bin",
+      "fineweb_train_000030.bin",
+      "fineweb_train_000031.bin",
+      "fineweb_train_000032.bin"
+    ],
+    "train_glob": "fineweb_train_*.bin",
+    "val_glob": "fineweb_val_*.bin",
+    "validation_tokens": 10485760
+  },
+  "evaluation": {
+    "early_interval": 50,
+    "late_interval": 10,
+    "switch_fraction": 0.65
+  },
+  "reference_validation_loss": 3.31017,
+  "runtime": {
+    "compile_model": true,
+    "omp_num_threads": 2,
+    "embedding_dtype": "bfloat16",
+    "matrix_dtype": "float32"
+  }
+}

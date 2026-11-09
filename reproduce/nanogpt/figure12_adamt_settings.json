@@ -1,0 +1,177 @@
+{
+  "description": "Recorded Figure 12 AdamT hyperparameters; settings reference, not a config for train.py.",
+  "runs": [
+    {
+      "batch_tokens": 131072,
+      "matrix_lr": 0.0010607,
+      "matrix_weight_decay": 0.3,
+      "betas": [
+        0.94,
+        0.94903
+      ],
+      "eps": 1e-10,
+      "strengths": [
+        0.25,
+        0.25
+      ],
+      "statistic_momentum": 0.938,
+      "damping": 0.001,
+      "warmup_steps": 1000,
+      "cooldown_fraction": 0.4,
+      "auxiliary": {
+        "embedding_lr": 0.84853,
+        "head_lr": 0.0088388,
+        "scalar_lr": 0.0282843,
+        "betas": [
+          0.71716,
+          0.9955
+        ],
+        "eps": 1e-10,
+        "weight_decay": 0
+      },
+      "reference_loss": 3.29196,
+      "statistic_update": "per step",
+      "sample_positions": "0:32 plus 33::16",
+      "root_refresh_steps": 16,
+      "initial_every_step_root_updates": 200,
+      "training_steps": 13000,
+      "sequence_length": 1024,
+      "gradient_reduction": "sum",
+      "root_method": "eigendecomposition",
+      "schedule_step_index": "zero-based; warmup multiplier=min(1,(step+1)/warmup_steps)",
+      "micro_batch_size": 32,
+      "validation_tokens": 10485760,
+      "statistic_scope": "global across ranks",
+      "root_refresh_policy": "every update for steps 0\u2013199, then staggered submissions every 16 updates; install on next update"
+    },
+    {
+      "batch_tokens": 524288,
+      "matrix_lr": 0.0021213,
+      "matrix_weight_decay": 0.6,
+      "betas": [
+        0.9,
+        0.85858
+      ],
+      "eps": 1e-10,
+      "strengths": [
+        0.25,
+        0.25
+      ],
+      "statistic_momentum": 0.938,
+      "damping": 0.001,
+      "warmup_steps": 250,
+      "cooldown_fraction": 0.4,
+      "auxiliary": {
+        "embedding_lr": 0.84853,
+        "head_lr": 0.0088388,
+        "scalar_lr": 0.0282843,
+        "betas": [
+          0.85858,
+          0.975
+        ],
+        "eps": 1e-10,
+        "weight_decay": 0
+      },
+      "reference_loss": 3.30979,
+      "statistic_update": "per forward; decay=0.938**(world_size/8)",
+      "sample_positions": "1::16",
+      "root_refresh_steps": 1,
+      "initial_every_step_root_updates": null,
+      "training_steps": 3250,
+      "sequence_length": 1024,
+      "gradient_reduction": "sum",
+      "root_method": "eigendecomposition",
+      "schedule_step_index": "zero-based; warmup multiplier=min(1,(step+1)/warmup_steps)",
+      "micro_batch_size": 64,
+      "validation_tokens": 10485760,
+      "statistic_scope": "rank-local; matrix owner uses its local input EMA",
+      "root_refresh_policy": "current local statistic, every update"
+    },
+    {
+      "batch_tokens": 1048576,
+      "matrix_lr": 0.0021213,
+      "matrix_weight_decay": 0.8,
+      "betas": [
+        0.85858,
+        0.93106
+      ],
+      "eps": 1e-10,
+      "strengths": [
+        0.25,
+        0.25
+      ],
+      "statistic_momentum": 0.938,
+      "damping": 0.001,
+      "warmup_steps": 125,
+      "cooldown_fraction": 0.4,
+      "auxiliary": {
+        "embedding_lr": 0.6,
+        "head_lr": 0.00625,
+        "scalar_lr": 0.02,
+        "betas": [
+          0.85858,
+          0.9025
+        ],
+        "eps": 1e-10,
+        "weight_decay": 0
+      },
+      "reference_loss": 3.34741,
+      "statistic_update": "per forward; decay=0.938**(world_size/16)",
+      "sample_positions": "1::16",
+      "root_refresh_steps": 1,
+      "initial_every_step_root_updates": null,
+      "training_steps": 1625,
+      "sequence_length": 1024,
+      "gradient_reduction": "sum",
+      "root_method": "eigendecomposition",
+      "schedule_step_index": "zero-based; warmup multiplier=min(1,(step+1)/warmup_steps)",
+      "micro_batch_size": 64,
+      "validation_tokens": 10485760,
+      "statistic_scope": "rank-local; matrix owner uses its local input EMA",
+      "root_refresh_policy": "current local statistic, every update"
+    },
+    {
+      "batch_tokens": 2097152,
+      "matrix_lr": 0.003,
+      "matrix_weight_decay": 1.8,
+      "betas": [
+        0.9,
+        0.86884
+      ],
+      "eps": 1e-10,
+      "strengths": [
+        0.25,
+        0.25
+      ],
+      "statistic_momentum": 0.938,
+      "damping": 0.001,
+      "warmup_steps": 63,
+      "cooldown_fraction": 0.6,
+      "auxiliary": {
+        "embedding_lr": 3.3941,
+        "head_lr": 0.0353553,
+        "scalar_lr": 0.113137,
+        "betas": [
+          0.92929,
+          0.96721
+        ],
+        "eps": 1e-10,
+        "weight_decay": 0
+      },
+      "reference_loss": 3.39727,
+      "statistic_update": "per forward; decay=0.938**(world_size/32)",
+      "sample_positions": "1::16",
+      "root_refresh_steps": 1,
+      "initial_every_step_root_updates": null,
+      "training_steps": 813,
+      "sequence_length": 1024,
+      "gradient_reduction": "sum",
+      "root_method": "eigendecomposition",
+      "schedule_step_index": "zero-based; warmup multiplier=min(1,(step+1)/warmup_steps)",
+      "micro_batch_size": 64,
+      "validation_tokens": 10485760,
+      "statistic_scope": "rank-local; matrix owner uses its local input EMA",
+      "root_refresh_policy": "current local statistic, every update"
+    }
+  ]
+}
