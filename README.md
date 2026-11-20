@@ -6,7 +6,7 @@ Toner uses each layer’s input statistics to precondition its weight update.
 Use **MuonT** with Muon or **AdamT** with AdamW, through either the general
 PyTorch implementation or the asynchronous CUDA backend.
 
-[Read the blog](https://muon-sfd-half-eighth-amin-1105.leamin.chatgpt.site/)
+[Read the blog](https://mohamad-amin.github.io/blog/toner/)
 · [Training example](examples/train_nanogpt.py)
 · [Fast CUDA guide](docs/FAST.md)
 
@@ -104,6 +104,18 @@ on CUDA. See the [fast guide](docs/FAST.md) for integration and checkpointing.
 Use the general implementation for other `nn.Linear` layouts. It computes
 factors by eigendecomposition every step; MuonT still uses a finite
 Newton–Schulz iteration for its polar operation.
+
+## Citation
+
+```bibtex
+@misc{mohamadi2026toner,
+  author = {Mohamad Amin Mohamadi and Kaiyue Wen and
+            Tianhao Wang and Zhiyuan Li},
+  title  = {{Toner}: Improving {Muon} and {AdamW} with Input Geometry},
+  year   = {2026},
+  url    = {https://mohamad-amin.github.io/blog/toner}
+}
+```
 
 ---
 
